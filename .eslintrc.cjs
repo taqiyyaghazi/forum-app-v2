@@ -4,7 +4,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts', 'react-router.config.ts'],
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'vite.config.ts',
+    'react-router.config.ts',
+    'build/**',
+    '.react-router/**',
+  ],
   extends: [
     'airbnb',
     'airbnb-typescript',
