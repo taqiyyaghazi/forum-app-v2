@@ -1,87 +1,95 @@
-# Welcome to React Router!
+# 💬 Forum App
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern, robust discussion platform built with bleeding-edge web technologies. This application allows users to register, login, create discussion threads, leave comments, and interact through a comprehensive upvote/downvote system.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+It consumes the public Dicoding Forum API.
 
-## Features
+## ✨ Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- **Authentication System**: Secure user registration and login using JWT tokens.
+- **Interactive Discussions**: Create, browse, and filter threads easily by category.
+- **Real-time Feedback**: Optimistic UI updates (`useOptimistic`) on thread and comment votes (likes/dislikes) for instantaneous visual feedback.
+- **Comprehensive Leaderboards**: View the most active and highly-rated users in the application.
+- **Beautiful UX**: Loading states represented by elegant Skeleton components, fully responsive layouts, and intuitive toast notifications using Sonner.
+- **Production Ready**: Fully containerized using Docker with multi-stage builds.
 
-## Getting Started
+## � Tech Stack
+
+- **Framework**: [React Router 7](https://reactrouter.com/) (Server-Side Rendering enabled).
+- **UI Library**: [React 19](https://react.dev/).
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) & [Shadcn UI](https://ui.shadcn.com/).
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/).
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/) for schema validation.
+- **Tooling**: TypeScript, ESLint, Prettier, Vite, pnpm.
+- **Deployment**: Docker.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) (v20+) and [pnpm](https://pnpm.io/) installed on your local machine.
 
 ### Installation
 
-Install the dependencies:
-
-```bash
-npm install
-```
+1. Clone this repository or open the project directory.
+2. Install all dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Set up environment variables. Create a `.env` file in the root directory:
+   ```env
+   VITE_API_BASE_URL=https://forum-api.dicoding.dev/v1
+   ```
 
 ### Development
 
-Start the development server with HMR:
+Run the development server with Hot Module Replacement (HMR):
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The website will be accessible at `http://localhost:5173`.
 
-## Building for Production
+### Production Build
 
-Create a production build:
+Create an optimized production build:
 
 ```bash
-npm run build
+pnpm build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+After building, start the production server:
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+pnpm start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+The application will be served natively at `http://localhost:3000`.
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+## 🐳 Docker Deployment
 
-### DIY Deployment
+This project includes a multi-stage `Dockerfile` optimized for `pnpm` and smaller image sizes.
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+1. **Build the Docker Image**:
 
-Make sure to deploy the output of `npm run build`
+   ```bash
+   docker build -t forum-app .
+   ```
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+2. **Run the Docker Container**:
+   ```bash
+   docker run -d -p 3000:3000 --name forum-app-container forum-app
+   ```
+   The app will now be running detached inside the container and accessible at `http://localhost:3000`.
 
-## Styling
+## 📂 Project Structure Highlights
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- `app/routes/`: Route components mapping to application URLs (e.g., Home, Thread Detail, Login, Leaderboards).
+- `app/components/`: Reusable UI elements, separating business concerns (`thread/`, `auth/`, `comment/`, `leaderboard/`) from basic building blocks (`ui/`).
+- `app/stores/`: Redux slices (`authSlice`, `threadsSlice`, `threadDetailSlice`, etc.) managing global state, caching, and dispatching asynchronous API thunks.
+- `app/lib/`: Custom utilities, including configured Axios instances (`api.ts`) and global helper functions.
 
 ---
 
-Built with ❤️ using React Router.
+_Built with ❤️ using React Router 7._
