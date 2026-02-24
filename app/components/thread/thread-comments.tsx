@@ -173,7 +173,7 @@ function CommentItem({
 
 export function ThreadComments({ threadId, comments }: ThreadCommentsProps) {
   return (
-    <div className="space-y-4 pt-6">
+    <div data-testid="comments-section" className="space-y-4 pt-6">
       <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
         Komentar{' '}
         <Badge variant="secondary" className="rounded-full px-2">
@@ -184,13 +184,16 @@ export function ThreadComments({ threadId, comments }: ThreadCommentsProps) {
       <CreateCommentForm threadId={threadId} />
 
       {comments.length === 0 ? (
-        <div className="text-center py-10 bg-white rounded-xl border border-dashed border-slate-300">
+        <div
+          data-testid="empty-comments"
+          className="text-center py-10 bg-white rounded-xl border border-dashed border-slate-300"
+        >
           <p className="text-slate-500 text-sm">
             Belum ada komentar. Jadilah yang pertama membalas!
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div data-testid="comments-list" className="space-y-4">
           {comments.map((comment) => (
             <CommentItem
               key={comment.id}

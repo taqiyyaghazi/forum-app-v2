@@ -29,19 +29,34 @@ export default function NewThread() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-slate-50/50 p-4 sm:p-8">
+    <div
+      data-testid="new-thread-page"
+      className="flex min-h-screen flex-col items-center bg-slate-50/50 p-4 sm:p-8"
+    >
       <div className="w-full max-w-2xl space-y-6">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild className="rounded-full">
+          <Button
+            data-testid="back-button"
+            variant="ghost"
+            size="icon"
+            asChild
+            className="rounded-full"
+          >
             <Link to="/">
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </Button>
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1
+              data-testid="new-thread-title"
+              className="text-2xl font-bold tracking-tight text-slate-900"
+            >
               Buat Diskusi Baru
             </h1>
-            <p className="text-sm text-slate-500">
+            <p
+              data-testid="new-thread-subtitle"
+              className="text-sm text-slate-500"
+            >
               Masukkan detail topik yang ingin dibahas.
             </p>
           </div>

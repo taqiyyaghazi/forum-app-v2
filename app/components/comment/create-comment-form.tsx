@@ -59,7 +59,10 @@ export function CreateCommentForm({ threadId }: CreateCommentFormProps) {
 
   if (!token) {
     return (
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center shadow-sm">
+      <div
+        data-testid="login-prompt"
+        className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center shadow-sm"
+      >
         <p className="text-slate-600 mb-4 text-sm">
           Anda harus masuk terlebih dahulu untuk ikut berdiskusi.
         </p>
@@ -76,7 +79,11 @@ export function CreateCommentForm({ threadId }: CreateCommentFormProps) {
         Tambahkan Balasan Baru
       </h4>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          data-testid="comment-form"
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4"
+        >
           <FormField
             control={form.control}
             name="content"
@@ -84,6 +91,7 @@ export function CreateCommentForm({ threadId }: CreateCommentFormProps) {
               <FormItem>
                 <FormControl>
                   <Textarea
+                    data-testid="comment-input"
                     placeholder="Tulis pendapat atau solusi Anda..."
                     className="min-h-[100px] resize-y"
                     {...field}
@@ -95,7 +103,11 @@ export function CreateCommentForm({ threadId }: CreateCommentFormProps) {
           />
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={isLoading}>
+            <Button
+              data-testid="comment-submit-button"
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

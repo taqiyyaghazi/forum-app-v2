@@ -21,7 +21,10 @@ export function LeaderboardItem({ entry, index }: LeaderboardItemProps) {
   };
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors">
+    <div
+      data-testid={`leaderboard-item-${index}`}
+      className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors"
+    >
       <div className="flex items-center gap-4">
         <span
           className={`text-lg font-bold w-6 text-center ${getRankColor(index)}`}

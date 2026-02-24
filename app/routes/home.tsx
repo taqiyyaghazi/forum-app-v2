@@ -69,10 +69,16 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div
+      data-testid="home-page"
+      className="min-h-screen bg-slate-50/50 py-10 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-3xl mx-auto">
         <header className="mb-10 text-center flex flex-col items-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h1
+            data-testid="home-title"
+            className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl"
+          >
             Tanya <span className="text-primary">Jawab</span>
           </h1>
           <p className="mt-4 mb-6 text-lg text-slate-600">
@@ -82,6 +88,7 @@ export default function Home() {
           <div className="relative w-full max-w-md">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
             <Input
+              data-testid="search-input"
               type="search"
               placeholder="Cari kategori diskusi..."
               className="pl-12 h-12 w-full rounded-full border-slate-200 shadow-sm focus-visible:ring-primary/20 text-base"
@@ -91,10 +98,14 @@ export default function Home() {
           </div>
 
           {categories.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+            <div
+              data-testid="category-list"
+              className="flex flex-wrap items-center justify-center gap-2 mt-6"
+            >
               {categories.map((category) => (
                 <Badge
                   key={category}
+                  data-testid={`category-${category}`}
                   variant={searchQuery === category ? 'default' : 'outline'}
                   className="cursor-pointer text-sm px-3 py-1 transition-colors hover:bg-primary/90 hover:text-primary-foreground"
                   onClick={() => handleCategoryClick(category)}
@@ -116,7 +127,10 @@ export default function Home() {
           )}
 
           {!isLoading && !error && threads.length === 0 && (
-            <div className="text-center py-20 text-slate-500">
+            <div
+              data-testid="empty-state"
+              className="text-center py-20 text-slate-500"
+            >
               <p>Belum ada diskusi saat ini. Jadilah yang pertama!</p>
             </div>
           )}
@@ -125,12 +139,15 @@ export default function Home() {
             !error &&
             threads.length > 0 &&
             filteredThreads.length === 0 && (
-              <div className="text-center py-20 text-slate-500">
+              <div
+                data-testid="no-results"
+                className="text-center py-20 text-slate-500"
+              >
                 <p>Diskusi yang Anda cari tidak ditemukan.</p>
               </div>
             )}
 
-          <div className="space-y-6">
+          <div data-testid="thread-list" className="space-y-6">
             {!isLoading &&
               !error &&
               filteredThreads.map((thread) => (

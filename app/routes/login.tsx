@@ -11,13 +11,19 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Login() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50/50 p-4">
+    <div
+      data-testid="login-page"
+      className="flex min-h-screen items-center justify-center bg-gray-50/50 p-4"
+    >
       <div className="w-full max-w-sm space-y-8 rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-200">
         <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
+          <h1
+            data-testid="login-title"
+            className="text-2xl font-semibold tracking-tight"
+          >
             Selamat Datang Kembali
           </h1>
-          <p className="text-sm text-gray-500">
+          <p data-testid="login-subtitle" className="text-sm text-gray-500">
             Masukkan kredensial Anda untuk mengakses akun
           </p>
         </div>
@@ -28,6 +34,7 @@ export default function Login() {
           Belum punya akun?{' '}
           <Link
             to="/register"
+            data-testid="register-link"
             className="font-semibold text-primary hover:underline hover:text-primary/80"
           >
             Daftar

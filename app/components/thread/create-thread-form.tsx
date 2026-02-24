@@ -61,7 +61,11 @@ export function CreateThreadForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        data-testid="create-thread-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+      >
         <FormField
           control={form.control}
           name="title"
@@ -70,6 +74,7 @@ export function CreateThreadForm() {
               <FormLabel>Judul</FormLabel>
               <FormControl>
                 <Input
+                  data-testid="title-input"
                   placeholder="Apa yang ingin Anda diskusikan?"
                   {...field}
                 />
@@ -86,7 +91,11 @@ export function CreateThreadForm() {
             <FormItem>
               <FormLabel>Kategori (Opsional)</FormLabel>
               <FormControl>
-                <Input placeholder="Contoh: react" {...field} />
+                <Input
+                  data-testid="category-input"
+                  placeholder="Contoh: react"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,6 +110,7 @@ export function CreateThreadForm() {
               <FormLabel>Isi Diskusi</FormLabel>
               <FormControl>
                 <Textarea
+                  data-testid="body-input"
                   placeholder="Tulis detail diskusi atau pertanyaan Anda di sini..."
                   className="min-h-[150px]"
                   {...field}
@@ -111,7 +121,12 @@ export function CreateThreadForm() {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button
+          data-testid="submit-button"
+          type="submit"
+          className="w-full"
+          disabled={isLoading}
+        >
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

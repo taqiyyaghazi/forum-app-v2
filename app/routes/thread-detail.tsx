@@ -1,38 +1,21 @@
-import { useEffect } from 'react';
-import { useParams, Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
-import api from '~/lib/api';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router';
 import { ThreadDetailSkeleton } from '~/components/thread/thread-detail-skeleton';
 
+import { ThreadComments } from '~/components/thread/thread-comments';
+import { ThreadItemDetail } from '~/components/thread/thread-item-detail';
+import { Button } from '~/components/ui/button';
 import { useAppDispatch, useAppSelector } from '~/stores/hooks';
 import {
-  fetchThreadDetail,
   clearThreadDetail,
+  fetchThreadDetail,
 } from '~/stores/threadDetailSlice';
-import { Button } from '~/components/ui/button';
-import { ThreadItemDetail } from '~/components/thread/thread-item-detail';
-import { ThreadComments } from '~/components/thread/thread-comments';
-import type { Route } from './+types/thread-detail';
 
-export async function loader({ params }: Route.LoaderArgs) {
-  try {
-    const res = await api.get(`/threads/${params.id}`);
-    return {
-      threadTitle: res.data.data.detailThread.title,
-    };
-  } catch (error) {
-    return {
-      threadTitle: 'Terjadi Kesalahan',
-    };
-  }
-}
-
-export function meta({ loaderData }: Route.MetaArgs) {
+export function meta() {
   return [
     {
-      title: loaderData?.threadTitle
-        ? `${loaderData.threadTitle} - Forum App`
-        : 'Detail Diskusi - Forum App',
+      title: 'Detail Diskusi - Forum App',
     },
     { name: 'description', content: 'Lihat detail diskusi' },
   ];
@@ -55,10 +38,14 @@ export default function ThreadDetail() {
   }, [dispatch, id]);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div
+      data-testid="thread-detail-page"
+      className="min-h-screen bg-slate-50/50 py-10 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="flex items-center gap-4 mb-6">
           <Button
+            data-testid="back-button"
             variant="outline"
             size="icon"
             asChild
@@ -74,7 +61,10 @@ export default function ThreadDetail() {
         {isLoading && <ThreadDetailSkeleton />}
 
         {error && (
-          <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center shadow-sm w-full mx-auto mt-20">
+          <div
+            data-testid="error-state"
+            className="rounded-xl border border-red-200 bg-red-50 p-6 text-center shadow-sm w-full mx-auto mt-20"
+          >
             <p className="font-semibold text-red-600 mb-4">{error}</p>
             <Button asChild variant="outline">
               <Link to="/">Kembali ke Beranda</Link>
