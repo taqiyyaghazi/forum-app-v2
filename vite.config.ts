@@ -16,11 +16,21 @@ const dirname =
 export default defineConfig({
   plugins: [
     tailwindcss(),
-    !process.argv.some((arg) => arg.includes('storybook')) && reactRouter(),
+    !process.argv.some((arg) => arg.includes('storybook')) &&
+      !process.env.VITEST &&
+      reactRouter(),
     tsconfigPaths(),
   ],
   test: {
     projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'node',
+          include: ['app/**/*.test.{ts,tsx}'],
+        },
+      },
       {
         extends: true,
         plugins: [
