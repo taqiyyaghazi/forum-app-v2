@@ -96,7 +96,10 @@ export function ThreadItemDetail({ detailThread }: ThreadItemDetailProps) {
   const sanitizedContent = { __html: DOMPurify.sanitize(detailThread.body) };
 
   return (
-    <Card className="shadow-sm border-slate-200 overflow-hidden">
+    <Card
+      data-testid="thread-detail-card"
+      className="shadow-sm border-slate-200 overflow-hidden"
+    >
       <CardHeader className="bg-white border-b border-slate-100 pb-6">
         <div className="flex items-start justify-between mb-4">
           <Badge
@@ -113,7 +116,10 @@ export function ThreadItemDetail({ detailThread }: ThreadItemDetailProps) {
           </span>
         </div>
 
-        <CardTitle className="text-2xl sm:text-3xl font-bold leading-tight text-slate-900 mb-6">
+        <CardTitle
+          data-testid="thread-detail-title"
+          className="text-2xl sm:text-3xl font-bold leading-tight text-slate-900 mb-6"
+        >
           {detailThread.title}
         </CardTitle>
 
@@ -138,6 +144,7 @@ export function ThreadItemDetail({ detailThread }: ThreadItemDetailProps) {
 
       <CardContent className="bg-white pt-6 text-slate-700 leading-relaxed">
         <div
+          data-testid="thread-detail-body"
           className="prose prose-slate max-w-none text-sm sm:text-base [word-break:break-word]"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={sanitizedContent}

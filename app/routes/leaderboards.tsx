@@ -28,10 +28,16 @@ export default function LeaderboardsPage() {
   }, [dispatch]);
 
   return (
-    <div className="container py-8 max-w-4xl mx-auto space-y-6">
+    <div
+      data-testid="leaderboards-page"
+      className="container py-8 max-w-4xl mx-auto space-y-6"
+    >
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
+          <h1
+            data-testid="leaderboards-title"
+            className="text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2"
+          >
             <Trophy className="h-8 w-8 text-yellow-500" />
             Klasemen Pengguna Aktif
           </h1>
@@ -44,11 +50,17 @@ export default function LeaderboardsPage() {
       </div>
 
       {error ? (
-        <div className="bg-destructive/10 text-destructive p-4 rounded-lg flex items-center justify-center min-h-[20vh] font-medium border border-destructive/20 shadow-sm">
+        <div
+          data-testid="error-state"
+          className="bg-destructive/10 text-destructive p-4 rounded-lg flex items-center justify-center min-h-[20vh] font-medium border border-destructive/20 shadow-sm"
+        >
           {error}
         </div>
       ) : (
-        <Card className="shadow-sm border-slate-200">
+        <Card
+          data-testid="leaderboard-card"
+          className="shadow-sm border-slate-200"
+        >
           <CardHeader className="bg-slate-50 border-b border-slate-100 px-6 py-4 flex flex-row items-center justify-between">
             <CardTitle className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
               Pengguna
@@ -58,7 +70,10 @@ export default function LeaderboardsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="divide-y divide-slate-100">
+            <div
+              data-testid="leaderboard-list"
+              className="divide-y divide-slate-100"
+            >
               {isLoading && <LeaderboardSkeleton />}
 
               {!isLoading &&
@@ -71,7 +86,10 @@ export default function LeaderboardsPage() {
                 ))}
 
               {leaderboards.length === 0 && !isLoading && (
-                <div className="py-12 text-center text-slate-500">
+                <div
+                  data-testid="empty-state"
+                  className="py-12 text-center text-slate-500"
+                >
                   Belum ada data pada papan peringkat.
                 </div>
               )}
