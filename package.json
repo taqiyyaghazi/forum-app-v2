@@ -9,6 +9,7 @@
     "lint:fix": "eslint . --fix",
     "start": "react-router-serve ./build/server/index.js",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "typecheck": "react-router typegen && tsc",
     "storybook": "storybook dev -p 6006",
