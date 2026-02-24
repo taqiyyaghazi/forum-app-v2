@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { PasswordInput } from '~/components/auth/password-input';
 import { Button } from '~/components/ui/button';
 import {
   Form,
@@ -16,6 +15,7 @@ import {
   FormMessage,
 } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
+import { PasswordInput } from '~/components/ui/password-input';
 
 import { loginUser } from '~/stores/authSlice';
 import { useAppDispatch, useAppSelector } from '~/stores/hooks';
