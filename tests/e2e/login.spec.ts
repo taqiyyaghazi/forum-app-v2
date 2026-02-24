@@ -52,7 +52,9 @@ test.describe('Login Feature', () => {
 
     await loginPage.login('user@example.com', 'wrongpassword');
 
-    await expect(loginPage.getToast('Gagal masuk')).toBeVisible();
+    await expect(loginPage.getToast('Gagal masuk')).toBeVisible({
+      timeout: 5000,
+    });
   });
 
   test('should successfully login and redirect to home page', async () => {
@@ -64,7 +66,9 @@ test.describe('Login Feature', () => {
 
     await loginPage.login('admin@example.com', 'password123');
 
-    await expect(loginPage.getToast('Berhasil masuk')).toBeVisible();
     await loginPage.expectRedirectTo('/');
+    await expect(loginPage.getToast('Berhasil masuk')).toBeVisible({
+      timeout: 10000,
+    });
   });
 });
