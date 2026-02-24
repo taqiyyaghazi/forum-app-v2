@@ -246,7 +246,7 @@ describe('threadsSlice', () => {
 
     it('selectFilteredThreads should return empty array if no match', () => {
       const result = selectFilteredThreads(selectorState, 'vuejs');
-      expect(result).toHaveLength(1);
+      expect(result).toHaveLength(0);
     });
   });
 });
